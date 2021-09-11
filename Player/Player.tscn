@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Collision&Health/Collision&Health.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+script = ExtResource( 1 )
+max_speed = 420
+acceleration = 2460
+deceleration = 4476
+turning_speed = 12400
+dash_type = 1
+dash_speed = 2140
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -24, -24, 24, -24, 24, 24, -24, 24 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprite"]
+color = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( -24, -24, -24, 24, 24, 24, 24, -24 )
+
+[node name="DashReload" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="InvinciblilityTime" type="Timer" parent="."]
+wait_time = 0.24
+one_shot = true
+
+[node name="DashTime" type="Timer" parent="."]
+wait_time = 0.08
+one_shot = true
+
+[node name="Collision&Health" parent="." instance=ExtResource( 2 )]
+
+[connection signal="timeout" from="DashReload" to="." method="_on_DashReload_timeout"]
+[connection signal="timeout" from="InvinciblilityTime" to="." method="_on_InvinciblilityTime_timeout"]
+[connection signal="timeout" from="DashTime" to="." method="_on_DashTime_timeout"]
