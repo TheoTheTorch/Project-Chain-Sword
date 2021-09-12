@@ -8,7 +8,7 @@ export var slash_time : float = 0.4
 var length : float = length_min
 export var length_speed : float = 1480
 # Sprite Rotation
-export var smooth_speed : float = 20
+export var smooth_speed : float = 16
 
 
 func _physics_process(delta: float) -> void:
@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 
 
 func mouse_dir() -> Vector2:
+#	return Vector2(cos(global_rotation), sin(global_rotation))
 	return get_parent().global_position.direction_to(get_global_mouse_position()).normalized()
 
 

@@ -14,6 +14,7 @@ acceleration = 2460
 deceleration = 4476
 turning_speed = 12400
 dash_speed = 2140
+dash_time = 0.02
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
