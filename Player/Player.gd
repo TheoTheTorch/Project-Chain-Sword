@@ -48,10 +48,10 @@ func movement_input() -> Vector2:
 func dash_input() -> Vector2:
 	match dash_type:
 		dash_types.MOVEMENT:
-			if Input.is_action_just_pressed("ui_select"):
+			if Input.is_action_just_pressed("dash"):
 				return movement_input()
 		dash_types.MOUSE:
-			if Input.is_mouse_button_pressed(2):
+			if Input.is_action_just_pressed("dash"):
 				return global_position.direction_to(get_global_mouse_position())
 	return Vector2(0,0)
 

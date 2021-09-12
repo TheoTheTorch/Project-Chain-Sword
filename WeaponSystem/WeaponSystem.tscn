@@ -1,9 +1,19 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://WeaponSystem/Sword.gd" type="Script" id=1]
 
 [node name="WeaponHandle" type="Position2D"]
 __meta__ = {
 "_gizmo_extents_": 20.0
 }
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 32, 0 )
+[node name="Sword" type="Position2D" parent="."]
+position = Vector2( 50, 0 )
+script = ExtResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Sword"]
+polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 110, 0, 118, -8 )
+
+[node name="SlashTime" type="Timer" parent="Sword"]
+wait_time = 0.8
+one_shot = true
