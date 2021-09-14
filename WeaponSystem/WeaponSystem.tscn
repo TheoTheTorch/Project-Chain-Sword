@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://WeaponSystem/Sword.gd" type="Script" id=1]
+[ext_resource path="res://WeaponSystem/WeaponSystem.gd" type="Script" id=2]
 
 [node name="WeaponHandle" type="Position2D"]
+script = ExtResource( 2 )
 __meta__ = {
 "_gizmo_extents_": 20.0
 }
+
+[node name="TweenPos" type="Tween" parent="."]
 
 [node name="Sword" type="Position2D" parent="."]
 position = Vector2( 50, 0 )
