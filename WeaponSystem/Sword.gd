@@ -6,14 +6,35 @@ export var length_min : int = 25
 export var length_max : int = 150
 export var slash_time : float = 0.4
 var length : float = length_min
-export var length_speed : float = 1480
+export var length_speed : int = 1480
+export var go_back_time : float = 0.2
 # Sprite Rotation
 export var smooth_speed : float = 16
-
+# States
+enum states {IDLE, ATTACK, COOLDOWN}
+var state = states.IDLE
+var attack_started := false
+var cooldown_started := false
 
 func _physics_process(delta: float) -> void:
-	slash(delta)
-	global_rotation += get_local_mouse_position().angle() * smooth_speed * delta
+	match state:
+		states.IDLE:
+			attack_started = false
+			if Input.is_action_just_pressed("attack"):
+				state = states.ATTACK
+		states.ATTACK:
+			slash(delta)
+			if Input.is_action_just_released("attack"):
+				cooldown_started = false
+				state = states.COOLDOWN
+		states.COOLDOWN:
+			if cooldown_started == false:
+				get_parent().get_node("CoolDown").start()
+				cooldown_started = true
+			if get_parent().get_node("CoolDown").time_left == 0:
+				state = states.IDLE
+	position = direction * length
+	rotate(delta)
 
 
 func mouse_dir() -> Vector2:
@@ -22,13 +43,15 @@ func mouse_dir() -> Vector2:
 
 
 func slash(delta) -> void:
-	if Input.is_action_just_pressed("attack"):
+#	if Input.is_action_just_pressed("attack"):
+	if attack_started == false:
 		length = length_min
 		$SlashTime.start()
+		attack_started = true
 	if Input.is_action_just_released("attack"):
-		length = length_min
-		position = direction * length
-	
+		$TweenBack.interpolate_property(self, "length",
+				length, length_min, go_back_time, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
+		$TweenBack.start()
 	
 	if Input.is_action_pressed("attack"):
 		if $SlashTime.time_left >= $SlashTime.wait_time / 2 && $SlashTime.time_left != 0:
@@ -37,6 +60,7 @@ func slash(delta) -> void:
 			length -= $SlashTime.time_left * 2 * length_speed * delta
 		length = clamp(length, length_min, length_max)
 		direction = mouse_dir()
-		position = direction * length
 
+func rotate(delta) -> void:
+	global_rotation += get_local_mouse_position().angle() * smooth_speed * delta
 

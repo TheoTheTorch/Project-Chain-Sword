@@ -75,7 +75,7 @@ func dash(delta) -> void:
 		############################
 		$InvinciblilityTime.start()
 		emit_signal("update_invincibility", true)
-		$Sprite/Polygon2D.color = Color(1,1,1,1)
+		$Sprite/Hexagon.color = Color(1,1,1,1)
 		############################
 		
 		var dir : Vector2 = dash_input()
@@ -96,7 +96,7 @@ func _on_DashReload_timeout() -> void:
 
 func _on_InvinciblilityTime_timeout() -> void:
 	emit_signal("update_invincibility", false)
-	$Sprite/Polygon2D.color = Color(1,1,1,0)
+	$Sprite/Hexagon.color = Color(0.709804, 0.094118, 0.094118, 1)
 
 func _on_DashTime_timeout() -> void:
 	can_dash = false

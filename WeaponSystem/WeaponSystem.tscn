@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://WeaponSystem/Sword.gd" type="Script" id=1]
 [ext_resource path="res://WeaponSystem/WeaponSystem.gd" type="Script" id=2]
+[ext_resource path="res://WeaponSystem/SwordLine/SwordLine.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.618182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.356322, 0.988506 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="WeaponHandle" type="Position2D"]
 script = ExtResource( 2 )
@@ -20,4 +28,15 @@ polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 110, 0, 118, -8 )
 
 [node name="SlashTime" type="Timer" parent="Sword"]
 wait_time = 0.8
+one_shot = true
+
+[node name="TweenBack" type="Tween" parent="Sword"]
+
+[node name="SwordLine" parent="Sword" instance=ExtResource( 3 )]
+points = PoolVector2Array( -2, 0, 118, -8 )
+width_curve = SubResource( 2 )
+color = SubResource( 1 )
+
+[node name="CoolDown" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true

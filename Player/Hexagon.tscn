@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="Hexagon" type="Polygon2D"]
+polygon = PoolVector2Array( 40, 0, 20, 34.641, -20, 34.641, -40, 0, -20, -34.641, 20, -34.641 )
