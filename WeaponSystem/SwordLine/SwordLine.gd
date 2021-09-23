@@ -22,8 +22,10 @@ func _ready() -> void:
 	
 	for i in segments:
 		polygon.append(to_global(points[0]))
+# warning-ignore:return_value_discarded
 		polygon.insert(0, to_global(points[1]))
 		colors.append(color.interpolate(range_lerp(i, 0, segments, 1.0, 0.0)))
+# warning-ignore:return_value_discarded
 		colors.insert(0, colors[-1])
 		
 	
@@ -34,7 +36,7 @@ func _ready() -> void:
 	Polygon.polygon = polygon
 	Polygon.polygons = polygons
 	Polygon.vertex_colors = colors
-	print(Array(colors))
+#	print(Array(colors))
 
 
 func _process(delta: float) -> void:
@@ -44,6 +46,7 @@ func _process(delta: float) -> void:
 		polygon.remove(segments - 1)
 		polygon.remove(segments - 1)
 		polygon.append(to_global(points[0]))
+# warning-ignore:return_value_discarded
 		polygon.insert(0, to_global(points[1]))
 	polygon[0] = to_global(points[0])
 	polygon[-1] = to_global(points[1])

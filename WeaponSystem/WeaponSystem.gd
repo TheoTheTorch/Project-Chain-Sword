@@ -3,7 +3,7 @@ extends Position2D
 export var move_time : float = 0.2
 export var node_path : NodePath
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move()
 
 func move():

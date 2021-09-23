@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/States/FollowPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Enemy01/Enemy01.gd" type="Script" id=3]
+
+[node name="Enemy01" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="FollowPlayer" parent="States" index="0" instance=ExtResource( 1 )]
+Enemy_path = NodePath("../..")
+
+[connection signal="update_position" from="States/FollowPlayer" to="." method="_on_FollowPlayer_update_position"]

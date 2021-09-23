@@ -15,6 +15,8 @@ enum states {IDLE, ATTACK, COOLDOWN}
 var state = states.IDLE
 var attack_started := false
 var cooldown_started := false
+# Collision
+onready var hitbox = get_node("Hitbox/CollisionPolygon2D")
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -22,17 +24,20 @@ func _physics_process(delta: float) -> void:
 			attack_started = false
 			if Input.is_action_just_pressed("attack"):
 				state = states.ATTACK
+			hitbox.disabled = true
 		states.ATTACK:
 			slash(delta)
-			if Input.is_action_just_released("attack"):
+			if Input.is_action_just_released("attack") || $SlashTime.time_left == 0:
 				cooldown_started = false
 				state = states.COOLDOWN
+			hitbox.disabled = false
 		states.COOLDOWN:
 			if cooldown_started == false:
 				get_parent().get_node("CoolDown").start()
 				cooldown_started = true
 			if get_parent().get_node("CoolDown").time_left == 0:
 				state = states.IDLE
+			hitbox.disabled = true
 	position = direction * length
 	rotate(delta)
 

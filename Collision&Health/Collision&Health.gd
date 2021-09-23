@@ -2,7 +2,7 @@ extends Node
 
 
 export var max_health : int = 100
-onready var health := max_health
+onready var health : int = max_health
 export var defense : int = 1
 var is_invincible := false
 

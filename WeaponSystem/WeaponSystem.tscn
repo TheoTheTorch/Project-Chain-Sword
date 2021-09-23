@@ -4,12 +4,12 @@
 [ext_resource path="res://WeaponSystem/WeaponSystem.gd" type="Script" id=2]
 [ext_resource path="res://WeaponSystem/SwordLine/SwordLine.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.618182 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0.356322, 0.988506 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 0.643137, 1, 1, 1, 0 )
 
 [node name="WeaponHandle" type="Position2D"]
 script = ExtResource( 2 )
@@ -34,8 +34,21 @@ one_shot = true
 
 [node name="SwordLine" parent="Sword" instance=ExtResource( 3 )]
 points = PoolVector2Array( -2, 0, 118, -8 )
-width_curve = SubResource( 2 )
-color = SubResource( 1 )
+width_curve = SubResource( 1 )
+color = SubResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="Sword" groups=[
+"PAttack",
+]]
+visible = false
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sword/Hitbox"]
+polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 110, 0, 118, -8 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="CoolDown" type="Timer" parent="."]
 wait_time = 0.2
