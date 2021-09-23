@@ -7,10 +7,13 @@
 [node name="World" type="YSort"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 424, 336 )
+position = Vector2( 416, 536 )
 
 [node name="WeaponHandle" parent="." instance=ExtResource( 2 )]
 node_path = NodePath("../Player")
+
+[node name="Camera2D" type="Camera2D" parent="WeaponHandle"]
+current = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -23,23 +26,11 @@ position = Vector2( 592, 96 )
 [node name="Enemy03" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 688, 272 )
 
-[node name="Enemy04" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 608, 512 )
-
-[node name="Enemy05" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 170, 534.45 )
-
 [node name="Enemy06" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 144, 344 )
 
 [node name="Enemy07" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 416, 168 )
-
-[node name="Enemy08" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 376, 448 )
-
-[node name="Enemy09" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 280, 352 )
 
 [node name="Enemy10" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 24, 200 )
@@ -52,9 +43,6 @@ position = Vector2( 792, 128 )
 
 [node name="Enemy13" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 800, 440 )
-
-[node name="Enemy14" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 592, 352 )
 
 [node name="Enemy15" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 784, 248 )

@@ -14,7 +14,7 @@ export var dash_time : float = 0.002
 var can_dash := true
 var has_dash_started := false
 # STATE varaiables
-enum states {IDLE, RUN, DASH}
+enum states {IDLE, RUN, DASH, DEAD}
 onready var state = states.IDLE
 
 
@@ -103,3 +103,8 @@ func _on_DashTime_timeout() -> void:
 	$DashReload.start()
 # DASH ---------------------------------------------------
 
+
+
+func _on_CollisionHealth_on_death() -> void:
+	state = states.DEAD
+	$Sprite/Hexagon2.color = Color(1,1,1)

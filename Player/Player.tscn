@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Collision&Health/Collision&Health.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Collision&Health/Collision&Health.gd" type="Script" id=2]
 [ext_resource path="res://Player/Hexagon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -45,7 +45,7 @@ dash_speed = 2140
 dash_time = 0.02
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -24, -24, 0, -32, 24, -24, 32, 0, 24, 24, 0, 32, -24, 24, -32, 0 )
+polygon = PoolVector2Array( -20, -20, 0, -28, 20, -20, 28, 0, 20, 20, 0, 28, -20, 20, -28, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -62,7 +62,14 @@ one_shot = true
 wait_time = 0.08
 one_shot = true
 
-[node name="Collision&Health" parent="." instance=ExtResource( 2 )]
+[node name="Collision&Health" type="Area2D" parent="." groups=[
+"Health",
+]]
+collision_mask = 10
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision&Health"]
+polygon = PoolVector2Array( -16, -32, -32, 0, -16, 32, 16, 32, 32, 0, 16, -32 )
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -81,9 +88,8 @@ color = Color( 0.984314, 0.67451, 0.133333, 1 )
 autoplay = "Idle"
 anims/Idle = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
 [connection signal="timeout" from="DashReload" to="." method="_on_DashReload_timeout"]
 [connection signal="timeout" from="InvinciblilityTime" to="." method="_on_InvinciblilityTime_timeout"]
 [connection signal="timeout" from="DashTime" to="." method="_on_DashTime_timeout"]
+[connection signal="area_entered" from="Collision&Health" to="Collision&Health" method="_on_Health_area_entered"]
+[connection signal="on_death" from="Collision&Health" to="." method="_on_CollisionHealth_on_death"]
