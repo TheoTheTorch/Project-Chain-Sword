@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Collision&Health/Collision&Health.gd" type="Script" id=2]
+[ext_resource path="res://Player/PCollision&Health.gd" type="Script" id=2]
 [ext_resource path="res://Player/Hexagon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -88,8 +88,10 @@ color = Color( 0.984314, 0.67451, 0.133333, 1 )
 autoplay = "Idle"
 anims/Idle = SubResource( 1 )
 
+[connection signal="update_invincibility" from="." to="Collision&Health" method="_on_Player_update_invincibility"]
 [connection signal="timeout" from="DashReload" to="." method="_on_DashReload_timeout"]
 [connection signal="timeout" from="InvinciblilityTime" to="." method="_on_InvinciblilityTime_timeout"]
 [connection signal="timeout" from="DashTime" to="." method="_on_DashTime_timeout"]
 [connection signal="area_entered" from="Collision&Health" to="Collision&Health" method="_on_Health_area_entered"]
 [connection signal="on_death" from="Collision&Health" to="." method="_on_CollisionHealth_on_death"]
+[connection signal="took_tamage" from="Collision&Health" to="." method="_on_CollisionHealth_took_tamage"]

@@ -35,6 +35,8 @@ func _physics_process(delta: float) -> void:
 			if velocity == Vector2(0,0):
 				has_dash_started = false
 				state = states.IDLE
+		states.DEAD:
+			velocity = Vector2(0,0)
 	velocity = move_and_slide(velocity)
 
 
@@ -108,3 +110,9 @@ func _on_DashTime_timeout() -> void:
 func _on_CollisionHealth_on_death() -> void:
 	state = states.DEAD
 	$Sprite/Hexagon2.color = Color(1,1,1)
+
+
+func _on_CollisionHealth_took_tamage() -> void:
+	$InvinciblilityTime.start()
+	emit_signal("update_invincibility", true)
+	$Sprite/Hexagon.color = Color(1,1,1,1)

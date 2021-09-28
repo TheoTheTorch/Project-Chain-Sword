@@ -5,6 +5,7 @@ onready var health := max_health
 export var defense : int = 1
 var is_invincible := false
 
+signal on_death
 
 func _on_EnemyHitbox_area_entered(_area: Area2D) -> void:
 	if not is_invincible:
@@ -15,9 +16,10 @@ func _on_EnemyHitbox_area_entered(_area: Area2D) -> void:
 		$InvincibilityTime.start()
 
 func decrease_health(dmg) -> void:
+# warning-ignore:narrowing_conversion
 	health -= max(dmg - defense, 1)
 	if health < 0:
-		get_parent().queue_free()
+		emit_signal("on_death")
 
 
 func _on_InvincibilityTime_timeout() -> void:

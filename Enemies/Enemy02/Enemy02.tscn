@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/States/HomingAttack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Enemy02/Enemy02.gd" type="Script" id=3]
+
+[node name="Enemy02" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="HomingAttack" parent="States" index="0" instance=ExtResource( 2 )]
+Enemy_path = NodePath("../..")
+
+[node name="CanAttackTime" type="Timer" parent="States" index="1"]
+wait_time = 0.4
+one_shot = true
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+disabled = true
+
+[node name="EnemyHitbox" parent="." index="3"]
+max_health = 1
+defense = 0
+
+[connection signal="on_attack_completion" from="States/HomingAttack" to="." method="_on_HomingAttack_on_attack_completion"]
+[connection signal="timeout" from="States/CanAttackTime" to="." method="_on_CanAttackTime_timeout"]
+[connection signal="on_death" from="EnemyHitbox" to="." method="_on_EnemyHitbox_on_death"]

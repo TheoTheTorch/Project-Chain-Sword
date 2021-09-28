@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 			hitbox.disabled = true
 		states.ATTACK:
 			slash(delta)
+			rotate(delta)
 			if Input.is_action_just_released("attack") || $SlashTime.time_left == 0:
 				cooldown_started = false
 				state = states.COOLDOWN
@@ -39,7 +40,6 @@ func _physics_process(delta: float) -> void:
 				state = states.IDLE
 			hitbox.disabled = true
 	position = direction * length
-	rotate(delta)
 
 
 func mouse_dir() -> Vector2:
