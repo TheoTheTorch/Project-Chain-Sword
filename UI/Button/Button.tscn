@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/Font/Minercraftory.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Button/Button.gd" type="Script" id=2]
+[ext_resource path="res://SFX/Deep beep 1.wav" type="AudioStream" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+outline_size = 4
+outline_color = Color( 0.0745098, 0.027451, 0.109804, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="InputEventAction" id=2]
+action = "ui_accept"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[node name="Button" type="Button"]
+margin_right = 24.0
+margin_bottom = 8.0
+focus_mode = 0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.709804, 0.0941176, 0.0941176, 1 )
+custom_colors/font_color_pressed = Color( 0.0745098, 0.027451, 0.109804, 1 )
+shortcut_in_tooltip = false
+button_mask = 7
+enabled_focus_mode = 0
+shortcut = SubResource( 3 )
+text = "This is text"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 20.0
+
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

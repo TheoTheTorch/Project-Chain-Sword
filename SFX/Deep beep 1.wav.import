@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Deep beep 1.wav-68fdf5b3f5c8642a7c26756f374c0dfc.sample"
+
+[deps]
+
+source_file="res://SFX/Deep beep 1.wav"
+dest_files=[ "res://.import/Deep beep 1.wav-68fdf5b3f5c8642a7c26756f374c0dfc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -12,7 +12,10 @@ var polygon : PoolVector2Array = PoolVector2Array()
 var polygons : Array = Array()
 var colors : PoolColorArray = PoolColorArray()
 
-func _ready() -> void:		
+func _ready() -> void:
+	update_parameters()
+
+func update_parameters() -> void:
 	assert(points.size() == 2, "SwordLine needs exactly 2 points.")
 	assert(segments >= 2, "SwordLine needs at least 2 segments.")
 	assert(not is_zero_approx(interval), "Interval is too small.")
