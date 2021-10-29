@@ -1,32 +1,21 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Button/Button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/Font/Minercraftory.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://UI/TitleScreen.png" type="Texture" id=3]
-[ext_resource path="res://UI/ColorPaletteGradient.tres" type="Texture" id=4]
+[ext_resource path="res://Art/IMG_20181008_083208_314.jpg" type="Texture" id=4]
 [ext_resource path="res://UI/Menu.gd" type="Script" id=5]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient : hint_black;
-uniform float mix_value = 1.0;
-
-void fragment()
-{
-	vec4 input_color = texture(TEXTURE, UV);
-	float gray_scale_value = dot(input_color.rgb, vec3(0.299, 0.687, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(gray_scale_value, 0.0)).rgb;
-	
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_value);
-	COLOR.a = input_color.a;
-}"
+//
+//uniform float color_component_precision;
+//
+//void vertex(){
+//	COLOR.rgb = texture(round(COLOR.rgb * float(color_component_precision)) / float(color_component_precision), UV);
+//}"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/mix_value = 1.0
-shader_param/gradient = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 84
@@ -49,7 +38,7 @@ level1 = "res://World.tscn"
 material = SubResource( 2 )
 margin_right = 1280.0
 margin_bottom = 720.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

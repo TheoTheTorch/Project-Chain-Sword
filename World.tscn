@@ -23,6 +23,8 @@ node_path = NodePath("../Player")
 [node name="Camera2D" type="Camera2D" parent="WeaponHandle"]
 current = true
 zoom = Vector2( 1.5, 1.5 )
+smoothing_enabled = true
+smoothing_speed = 10.0
 
 [node name="Label" type="Label" parent="WeaponHandle/Camera2D"]
 visible = false
