@@ -23,9 +23,7 @@ outline_size = 8
 outline_color = Color( 0.0745098, 0.027451, 0.109804, 1 )
 font_data = ExtResource( 2 )
 
-[node name="Menu" type="Control" groups=[
-"UI",
-]]
+[node name="Menu" type="Control" groups=["UI"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
