@@ -6,8 +6,8 @@ onready var health : int = max_health
 export var defense : int = 1
 var is_invincible := false
 
-enum types {PLAYER, ENEMY, ENEMY_ATTACK, PLAYER_ATTACK}
-export(types) var type = types.ENEMY
+#enum types {PLAYER, ENEMY, ENEMY_ATTACK, PLAYER_ATTACK}
+#export(types) var type = types.ENEMY
 
 signal on_death
 signal took_tamage

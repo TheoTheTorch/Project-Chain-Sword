@@ -10,7 +10,9 @@ signal on_death
 func _on_EnemyHitbox_area_entered(_area: Area2D) -> void:
 	if not is_invincible:
 		get_parent().get_node("Sprite/AnimationPlayer").play("Hurt")
-		decrease_health(get_node("/root/PlayerDamage").player_dmg)
+		
+		var dmg = get_node("/root/PlayerDamage").player_dmg
+		decrease_health(dmg)
 		
 		is_invincible = true
 		$InvincibilityTime.start()

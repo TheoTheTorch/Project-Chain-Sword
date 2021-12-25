@@ -10,5 +10,8 @@ script = ExtResource( 3 )
 [node name="FollowPlayer" parent="States" index="0" instance=ExtResource( 1 )]
 Enemy_path = NodePath("../..")
 
+[node name="EnemyHitbox" parent="." index="3"]
+visible = false
+
 [connection signal="update_position" from="States/FollowPlayer" to="." method="_on_FollowPlayer_update_position"]
 [connection signal="on_death" from="EnemyHitbox" to="." method="_on_EnemyHitbox_on_death"]

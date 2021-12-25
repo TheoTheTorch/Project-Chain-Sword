@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://StateMachine.gd"
+"path": "res://Enemies/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "ContributorClass": "",
@@ -56,6 +56,10 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 PlayerDamage="*res://Player/PlayerDamage.gd"
 ToggleFullScreen="*res://AutoLoads/ToggleFullScreen.gd"
+
+[debug]
+
+settings/fps/force_fps=120
 
 [display]
 

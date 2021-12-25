@@ -18,9 +18,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.0745098, 0.027451, 0.109804, 1 ) ]
 }
 
-[node name="EnemyBase" type="KinematicBody2D" groups=[
-"Enemy",
-]]
+[node name="EnemyBase" type="KinematicBody2D" groups=["Enemy"]]
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
@@ -49,10 +47,7 @@ polygon = PoolVector2Array( -16, 0, -8, 16, 0, 32, 8, 16, 16, 0, 8, -16, 0, -32,
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Hurt = SubResource( 1 )
 
-[node name="EnemyHitbox" type="Area2D" parent="." groups=[
-"Enemy",
-]]
-visible = false
+[node name="EnemyHitbox" type="Area2D" parent="." groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource( 2 )

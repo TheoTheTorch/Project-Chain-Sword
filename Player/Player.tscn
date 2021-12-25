@@ -33,9 +33,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.520697, 0.520697 ), Vector2( 0.25, 0.25 ), Vector2( 0.520697, 0.520697 ) ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
-"Player",
-]]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
 max_speed = 420
 acceleration = 2460
@@ -62,9 +60,7 @@ one_shot = true
 wait_time = 0.08
 one_shot = true
 
-[node name="Collision&Health" type="Area2D" parent="." groups=[
-"Health",
-]]
+[node name="Collision&Health" type="Area2D" parent="." groups=["Health"]]
 collision_mask = 10
 script = ExtResource( 2 )
 
