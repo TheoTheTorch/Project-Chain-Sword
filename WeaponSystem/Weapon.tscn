@@ -7,10 +7,9 @@
 script = ExtResource( 1 )
 
 [node name="Chain" parent="." instance=ExtResource( 2 )]
-ropeLength = 75.0
-constrain = 2.68
-dampening = 0.965
-max_range = 125
+ropeLength = 120.0
+constrain = 1.98
+dampening = 0.94
 
 [node name="RopeArea" type="Area2D" parent="." groups=["PAttack"]]
 visible = false

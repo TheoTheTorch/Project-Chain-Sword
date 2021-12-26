@@ -1,15 +1,15 @@
 extends Node2D
 
 
-export (float) var ropeLength = 45
-export (float) var constrain = 1	# distance between points
+export (float) var ropeLength = 75
+export (float) var constrain = 2.88 	# distance between points
 export (Vector2) var gravity = Vector2(0,0)
 export (float) var dampening = 0.94
 export (bool) var startPin = true
 export (bool) var endPin = true
 #export 
 
-export var max_range : int = 100
+export var max_range : int = 125
 
 onready var line2D: = $Line2D
 onready var ActualLine2D = $ActualLine2D
@@ -43,7 +43,11 @@ func _process(delta)->void:
 	
 	update_points(delta)
 	update_constrain(delta)
-	
+	update_constrain(delta)
+	update_constrain(delta)
+#	update_constrain(delta)
+#	update_constrain(delta)
+#	update_constrain(delta)
 	# Send positions to Line2D for drawing
 	line2D.points = pos
 	
