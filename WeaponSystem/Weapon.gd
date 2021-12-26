@@ -1,14 +1,18 @@
 extends Node2D
 
 
-onready var ActualLine2D = get_node("Chain/ActualLine2D")
+onready var ActualLine2D = $Chain/ActualLine2D
 var chain_points = []
 
-onready var Collision = get_node("Area2D/CollisionPolygon2D")
+onready var Collision = $RopeArea/CollisionPolygon2D
+onready var Hammer = $HammerArea
 
 
 func _physics_process(_delta: float) -> void:
 	update_collision_shape(Array(ActualLine2D.points))
+	
+	if Array(ActualLine2D.points) != []:
+		Hammer.position = Array(ActualLine2D.points)[-1]
 
 func update_collision_shape(points: Array) -> void:
 	if points != []:

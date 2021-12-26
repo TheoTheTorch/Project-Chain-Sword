@@ -5,13 +5,15 @@ onready var health := max_health
 export var defense : int = 1
 var is_invincible := false
 
+export var damage : int = 20
+
 signal on_death
 
 func _on_EnemyHitbox_area_entered(_area: Area2D) -> void:
 	if not is_invincible:
 		get_parent().get_node("Sprite/AnimationPlayer").play("Hurt")
 		
-		var dmg = get_node("/root/PlayerDamage").player_dmg
+		var dmg = get_node("/root/PlayerStats").player_dmg
 		decrease_health(dmg)
 		
 		is_invincible = true

@@ -20,5 +20,5 @@ func update_invincibility(value) -> void:
 
 func _on_Health_area_entered(area: Area2D) -> void:
 	if "Enemy" in area.get_groups():
-		take_damage(25)
+		take_damage(area.damage)
 

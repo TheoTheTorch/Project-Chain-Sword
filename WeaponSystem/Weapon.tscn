@@ -12,12 +12,32 @@ constrain = 2.68
 dampening = 0.965
 max_range = 125
 
-[node name="Area2D" type="Area2D" parent="." groups=["PAttack"]]
+[node name="RopeArea" type="Area2D" parent="." groups=["PAttack"]]
 visible = false
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RopeArea"]
+polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HammerArea" type="Area2D" parent="." groups=["PAttack"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HammerArea"]
+visible = false
+scale = Vector2( 2.97626, 2.97626 )
+polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionPolygon2D2" type="Polygon2D" parent="HammerArea"]
+scale = Vector2( 2.7337, 2.7337 )
+color = Color( 0.709804, 0.0941176, 0.0941176, 1 )
 polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
 __meta__ = {
 "_editor_description_": ""

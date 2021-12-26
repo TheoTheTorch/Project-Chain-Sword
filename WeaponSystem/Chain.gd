@@ -114,7 +114,6 @@ func move_rope() -> void:
 	
 	posi = camera_center() - mous.direction_to(camera_center()) * min(mous.distance_to(camera_center()), max_range)
 	
-	$Polygon2D.global_position = posi
 	
 	set_start(posi)
 	set_last(posi)
