@@ -1,34 +1,30 @@
 extends Node2D
 
 
+onready var swing_dmg : int = get_node("/root/PlayerStats").swing_damage
+onready var tip_dmg : int = get_node("/root/PlayerStats").tip_damage
+
 onready var ActualLine2D = $Chain/ActualLine2D
-var chain_points = []
+onready var Sword = $SwordArea
+onready var SwordTip = $SwordTip
 
-onready var Collision = $RopeArea/CollisionPolygon2D
-onready var Hammer = $HammerArea
 
+func _ready() -> void:
+	$SwordArea.damage = swing_dmg
+	$SwordTip.damage = tip_dmg
 
 func _physics_process(_delta: float) -> void:
-	update_collision_shape(Array(ActualLine2D.points))
-	
-	if Array(ActualLine2D.points) != []:
-		Hammer.position = Array(ActualLine2D.points)[-1]
+	update_sword(Array(ActualLine2D.points))
 
-func update_collision_shape(points: Array) -> void:
+func update_sword(points: Array) -> void:
 	if points != []:
+		Sword.position = points[-1]
 # warning-ignore:integer_division
-		Collision.polygon = PoolVector2Array([points[0], points[int(len(points)/2)], points[-1]])
+		Sword.rotation = points[int(len(points)/2)].direction_to(points[-1]).angle()
+		
+		SwordTip.position = points[-1]
+# warning-ignore:integer_division
+		SwordTip.rotation = points[int(len(points)/2)].direction_to(points[-1]).angle()
 
 
-#	Collision.polygon = []
-#	var lowest := Vector2.INF
-#	var highest := -Vector2.INF
-#
-#	for point in points:
-#		if point.y < lowest.y: lowest.y = point.y
-#		if point.y > highest.y: highest.y = point.y
-#		if point.x < lowest.x: lowest.x = point.x
-#		if point.x > highest.x: highest.x = point.x
-#
-#	var poly : PoolVector2Array = [lowest, Vector2(lowest.x, highest.y), highest, Vector2(highest.x, lowest.y)]
-#	Collision.polygon = poly
+

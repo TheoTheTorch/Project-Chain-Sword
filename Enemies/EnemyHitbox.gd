@@ -9,12 +9,12 @@ export var damage : int = 20
 
 signal on_death
 
-func _on_EnemyHitbox_area_entered(_area: Area2D) -> void:
+func _on_EnemyHitbox_area_entered(area: Area2D) -> void:
 	if not is_invincible:
 		get_parent().get_node("Sprite/AnimationPlayer").play("Hurt")
-		
-		var dmg = get_node("/root/PlayerStats").player_dmg
-		decrease_health(dmg)
+	
+		if not area.get("damage") == null:
+			decrease_health(area.damage)
 		
 		is_invincible = true
 		$InvincibilityTime.start()
@@ -22,7 +22,7 @@ func _on_EnemyHitbox_area_entered(_area: Area2D) -> void:
 func decrease_health(dmg) -> void:
 # warning-ignore:narrowing_conversion
 	health -= max(dmg - defense, 1)
-	if health < 0:
+	if health <= 0:
 		emit_signal("on_death")
 
 

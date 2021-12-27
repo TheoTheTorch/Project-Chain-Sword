@@ -48,6 +48,7 @@ func _process(delta)->void:
 #	update_constrain(delta)
 #	update_constrain(delta)
 #	update_constrain(delta)
+
 	# Send positions to Line2D for drawing
 	line2D.points = pos
 	

@@ -1,4 +1,5 @@
 extends Node
 
-var player_dmg : int = 80
+var swing_damage : int = 50
+var tip_damage : int = 100
 var max_health : int = 100 

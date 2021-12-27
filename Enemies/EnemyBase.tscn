@@ -23,7 +23,7 @@ __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
 
-[node name="States" type="Node" parent="."]
+[node name="States" type="Node2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -24, -16, -24, 16, 0, 32, 24, 16, 24, -16, 0, -32 )

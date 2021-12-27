@@ -2,7 +2,8 @@ extends Position2D
 
 export var spawn_time : float = 4
 export var max_enemy_count : int = 100
-onready var enemy = load("res://Enemies/Enemy01/Enemy01.tscn")
+export var enemy_name := "res://Enemies/Enemy03/Enemy03.tscn"
+onready var enemy = load(enemy_name)
 
 func _ready() -> void:
 	$Timer.start(rand_range(0.8 , 1.2))

@@ -1,43 +1,55 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://WeaponSystem/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://WeaponSystem/Chain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WeaponSystem/WeaponDamage.gd" type="Script" id=3]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Chain" parent="." instance=ExtResource( 2 )]
-ropeLength = 120.0
-constrain = 1.98
-dampening = 0.94
+ropeLength = 65.0
+constrain = 1.85
+dampening = 0.965
 
-[node name="RopeArea" type="Area2D" parent="." groups=["PAttack"]]
-visible = false
+[node name="SwordArea" type="Area2D" parent="." groups=["PAttack"]]
 collision_layer = 4
 collision_mask = 2
+script = ExtResource( 3 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RopeArea"]
-polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwordArea"]
+visible = false
+scale = Vector2( 2.7337, 2.7337 )
+polygon = PoolVector2Array( 0, -8.77931, -8.77931, 0, 0, 8.77931, 49.3836, 1.09741, 30.7276, 0, 49.3836, -1.09741 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HammerArea" type="Area2D" parent="." groups=["PAttack"]]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HammerArea"]
-visible = false
-scale = Vector2( 2.97626, 2.97626 )
-polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="CollisionPolygon2D2" type="Polygon2D" parent="HammerArea"]
+[node name="CollisionPolygon2D2" type="Polygon2D" parent="SwordArea"]
 scale = Vector2( 2.7337, 2.7337 )
 color = Color( 0.709804, 0.0941176, 0.0941176, 1 )
-polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
+polygon = PoolVector2Array( 0, -8.77931, -8.77931, 0, 0, 8.77931, 49.3836, 1.09741, 30.7276, 0, 49.3836, -1.09741 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="SwordTip" type="Area2D" parent="." groups=["PAttack"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="SwordTip"]
+visible = false
+scale = Vector2( 2.97626, 2.97626 )
+polygon = PoolVector2Array( 26.8794, 0, 48.0469, -2.01595, 54.0947, 0, 48.0469, 1.67996 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionPolygon2D4" type="Polygon2D" parent="SwordTip"]
+scale = Vector2( 2.97626, 2.97626 )
+color = Color( 0.984314, 0.67451, 0.133333, 1 )
+polygon = PoolVector2Array( 26.8794, 0, 45.3589, -1.00798, 52.4148, 0, 45.3589, 1.00798 )
 __meta__ = {
 "_editor_description_": ""
 }

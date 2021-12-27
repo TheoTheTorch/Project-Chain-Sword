@@ -13,9 +13,11 @@ export var dash_speed : int = 640
 export var dash_time : float = 0.002
 var can_dash := true
 var has_dash_started := false
+onready var TrailPoint = $TrailPoint
 # STATE varaiables
 enum states {IDLE, RUN, DASH, DEAD}
 onready var state = states.IDLE
+
 
 
 signal update_invincibility
@@ -32,7 +34,9 @@ func _physics_process(delta: float) -> void:
 			elif dash_input() && can_dash:state = states.DASH
 		states.DASH:
 			dash(delta)
+			update_trail()
 			if velocity == Vector2(0,0):
+				TrailPoint.get_node("Trail/Polygon2D").visible = false
 				has_dash_started = false
 				state = states.IDLE
 		states.DEAD:
@@ -116,3 +120,8 @@ func _on_CollisionHealth_took_tamage() -> void:
 	$InvinciblilityTime.start()
 	emit_signal("update_invincibility", true)
 	$Sprite/Hexagon.color = Color(1,1,1,1)
+
+
+func update_trail() -> void:
+	TrailPoint.rotation = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").angle()
+	TrailPoint.get_node("Trail/Polygon2D").visible = true
