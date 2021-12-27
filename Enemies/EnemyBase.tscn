@@ -39,11 +39,6 @@ polygon = PoolVector2Array( -24, -16, -16, 0, -24, 16, -8, 16, 0, 32, 8, 16, 24,
 scale = Vector2( 0.701573, 0.701573 )
 polygon = PoolVector2Array( -24, -16, -16, 0, -24, 16, -8, 16, 0, 32, 8, 16, 24, 16, 16, 0, 24, -16, 8, -16, 0, -32, -8, -16 )
 
-[node name="Polygon2D3" type="Polygon2D" parent="Sprite"]
-visible = false
-scale = Vector2( 0.321999, 0.321999 )
-polygon = PoolVector2Array( -16, 0, -8, 16, 0, 32, 8, 16, 16, 0, 8, -16, 0, -32, -8, -16 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Hurt = SubResource( 1 )
 

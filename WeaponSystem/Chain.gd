@@ -11,12 +11,14 @@ export (bool) var endPin = true
 
 export var max_range : int = 125
 
-onready var line2D: = $Line2D
 onready var ActualLine2D = $ActualLine2D
 
 var pos: PoolVector2Array
 var posPrev: PoolVector2Array
 var pointCount: int
+
+#export var process_per_frame : int = 2
+#var current_ppf := process_per_frame 
 
 
 func _ready()->void:
@@ -39,20 +41,14 @@ func init_position()->void:
 
 
 func _process(delta)->void:
-	move_rope()
-	
-	update_points(delta)
-	update_constrain(delta)
-	update_constrain(delta)
-	update_constrain(delta)
-#	update_constrain(delta)
-#	update_constrain(delta)
-#	update_constrain(delta)
-
-	# Send positions to Line2D for drawing
-	line2D.points = pos
-	
-	show_line()
+#	if current_ppf == 1:
+		move_rope()
+		update_points(delta)
+		update_constrain(delta)
+		update_constrain(delta)
+		show_line()
+#		current_ppf = process_per_frame
+#	else: current_ppf -= 1
 
 
 
@@ -104,12 +100,12 @@ func update_constrain(delta)->void:
 func show_line() -> void:
 	var farthest := pos[0]
 	# check for farthest distance
-	for point in line2D.points:
+	for point in pos:
 		if point.distance_to(pos[0]) > farthest.distance_to(pos[0]): farthest = point
 	
 	ActualLine2D.clear_points()
-	for i in range(Array(line2D.points).find(farthest)):
-		ActualLine2D.add_point(line2D.points[i])
+	for i in range(Array(pos).find(farthest)):
+		ActualLine2D.add_point(pos[i])
 	
 
 func move_rope() -> void:

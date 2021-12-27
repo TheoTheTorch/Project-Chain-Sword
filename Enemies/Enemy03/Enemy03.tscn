@@ -14,7 +14,7 @@ deceleration = 129
 attract_power = 5.5
 avoid_power = 0.4
 desired_distance = 40
-number_of_rays = 36
+number_of_rays = 10
 ray_length = 100
 exclude_self = NodePath("../..")
 
